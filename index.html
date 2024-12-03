@@ -80,10 +80,23 @@
             <section id="contact" class="contact">
                 <h2>Get in Touch</h2>
                 <div id="form-status" class="form-status"></div>
-                <form id="contact-form" action="https://formspree.io/f/xovqygyk" method="POST">
-                    <input type="text" name="name" placeholder="Your Name" required>
-                    <input type="email" name="email" placeholder="Your Email" required>
-                    <textarea name="message" placeholder="Your Message" required></textarea>
+                <form action="https://formspree.io/f/xovqygyk" method="POST">
+                    <label>
+                        Your Name:
+                        <input type="text" name="name" required>
+                    </label>
+                    <label>
+                        Your Email:
+                        <input type="email" name="email" required>
+                    </label>
+                    <label>
+                        Your Message:
+                        <textarea name="message" required></textarea>
+                    </label>
+                    <!-- Anti-spam honeypot field -->
+                    <input type="text" name="_gotcha" style="display:none">
+                    <!-- Specify return URL after form submission -->
+                    <input type="hidden" name="_next" value="https://abdallahokla.github.io/#contact">
                     <button type="submit" class="btn">Send Message</button>
                 </form>
             </section>
