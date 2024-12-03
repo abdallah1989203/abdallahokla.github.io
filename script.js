@@ -10,27 +10,32 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Contact form submission handler
+    // Contact form handling
     const contactForm = document.getElementById('contact-form');
     if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
+        contactForm.addEventListener('submit', async function(e) {
             e.preventDefault();
             
-            // Basic form validation
-            const name = this.querySelector('input[name="name"]').value;
-            const email = this.querySelector('input[name="email"]').value;
-            const message = this.querySelector('textarea[name="message"]').value;
-
-            if (!name || !email || !message) {
-                alert('Please fill out all fields');
-                return;
+            try {
+                const response = await fetch(this.action, {
+                    method: 'POST',
+                    body: new FormData(this),
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                if (response.ok) {
+                    // Success message
+                    alert('Thank you for your message! I will get back to you soon.');
+                    this.reset();
+                } else {
+                    // Error message
+                    alert('Oops! There was a problem sending your message. Please try again.');
+                }
+            } catch (error) {
+                alert('Oops! There was a problem sending your message. Please try again.');
             }
-
-            // In a real-world scenario, you'd send this to a backend
-            alert('Message sent successfully! I will get back to you soon.');
-            
-            // Reset form
-            this.reset();
         });
     }
 
